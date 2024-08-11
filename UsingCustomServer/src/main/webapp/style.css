@@ -1,0 +1,182 @@
+@charset "UTF-8";
+@charset "UTF-8";
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+	color: #333;
+}
+
+.timer, #wpm {
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+	margin-top: 10px;
+	color: #1a73e8;
+}
+
+.container {
+	position: relative;
+	width: 650px;
+	height : 200px;
+	margin: 20px auto;
+}
+
+#quoteDisplay, #quoteInput {
+	font-size: 25px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	line-height: 1.5;
+}
+
+#quoteDisplay {
+	padding: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	color: black; 
+	white-space: pre-wrap;
+	color: #555555;
+	opacity: .7;
+}
+
+#quoteInput {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	color: transparent; 
+	caret-color: black;
+	font-size: 25px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	padding: 10px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	line-height: 1.5;
+	white-space: pre-wrap; 
+	resize: none;
+}
+
+#quoteInput::placeholder {
+	color: transparent;
+}
+
+#rematchButton {
+	margin-top: 20px;
+	padding: 10px 20px;
+	font-size: 18px;
+	cursor: pointer;
+	background-color: #1a73e8;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	transition: background-color 0.3s;
+}
+
+#readyButton {
+	margin-top: 20px;
+	padding: 10px 20px;
+	font-size: 18px;
+	cursor: pointer;
+	background-color: green;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	transition: background-color 0.3s;
+}
+
+#exitButton {
+	margin-top: 20px;
+	padding: 10px 20px;
+	font-size: 18px;
+	cursor: pointer;
+	background-color: red;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	transition: background-color 0.3s;
+}
+
+.res-display {
+	position: absolute;
+	right: 20px;
+	top: 100px;
+	font-size: 18px;
+	background: #ffeb3b;
+	padding: 10px;
+	border-radius: 4px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#d {
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+	background: #333;
+	color: #fff;
+	padding: 10px;
+}
+
+#progressBar {
+	width: 650px;
+	height: 20px;
+	background-color: lightgrey;
+	margin: 0 auto;
+	position: relative;
+}
+
+#fillBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background-color: green;
+	width: 0;
+}
+
+.correct {
+	color: green;
+}
+
+.incorrect {
+	color: red;
+	text-decoration: underline;
+}
+
+.progressBarWrapper {
+	width: 650px;
+	height: 20px;
+	background-color: #e0e0e0;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+}
+
+.progressBar {
+	height: 100%;
+	background-color: green;
+	transition: width 0.3s ease-in-out;
+	border-radius: 5px;
+}
+
+.wpmDisplay {
+	font-size: 12px;
+	color: #333;
+	margin-top: 2px;
+	position: absolute;
+	top: 0;
+	right: 10px;
+}
+
+#progressBars {
+	margin-top: 20px;
+}

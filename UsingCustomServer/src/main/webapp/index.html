@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="shortcut icon" href="#">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            color: #333;
+        }
+        #welcome {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        #addRoomBtn {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #addRoomBtn:hover {
+            background-color: #2980b9;
+        }
+        .room {
+            margin: 5px 0;
+            padding: 10px;
+            width:200px;
+            font-size: 1.1em;
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .room:hover {
+            background-color: #dce3e8;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome">Welcome</div>
+    <button id="addRoomBtn">Add Room</button>
+    <div id="rooms"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (!loggedInUser) {
+                window.location.href = 'index.html';
+            } else {
+                //document.getElementById('welcome').textContent = 'Welcome ' + loggedInUser;
+                loadRooms();
+            }
+        });
+
+        document.getElementById('addRoomBtn').addEventListener('click', function() {
+            let roomName = prompt('Enter the room name:');
+            if (roomName) {
+                let roomPass = prompt('Enter the room password:');
+                if (roomPass) {
+                    let rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+                    rooms.push({ name: roomName, password: roomPass });
+                    localStorage.setItem('rooms', JSON.stringify(rooms));
+                    displayRooms(rooms);
+                }
+            }
+        });
+
+        function loadRooms() {
+            const rooms = JSON.parse(localStorage.getItem('rooms')) || [];
+            displayRooms(rooms);
+        }
+
+        function displayRooms(rooms) {
+            const roomsContainer = document.getElementById('rooms');
+            roomsContainer.innerHTML = '';
+            rooms.forEach(room => {
+                let roomDiv = document.createElement('div');
+                roomDiv.classList.add('room');
+                roomDiv.textContent = room.name;
+                roomDiv.dataset.password = room.password;
+
+                roomDiv.addEventListener('click', function() {
+                    let enteredPass = prompt('Enter the password for ' + room.name + ':');
+                    if (enteredPass === room.password) {
+                    	localStorage.setItem('currentRoom', room.name);
+                        window.location.href = 'home.html';  
+                    } else {
+                        alert('Incorrect password!');
+                    }
+                });
+
+                roomsContainer.appendChild(roomDiv);
+            });
+        }
+    </script>
+</body>
+</html>
